@@ -8,13 +8,13 @@ class Solution {
             return -1;
         }
         
-        int average = total/machines.length;
+        int target = total/machines.length;
         int count=0;
         int maximum=0;
         
         for(int i=0; i<machines.length; i++){
-            count+=machines[i] - average; 
-            maximum = Math.max(maximum, Math.max(Math.abs(count), machines[i]-average));
+            count+=machines[i] - target; 
+            maximum = Math.max(maximum, Math.max(Math.abs(count), machines[i]-target));
         }
         return maximum;
     }
