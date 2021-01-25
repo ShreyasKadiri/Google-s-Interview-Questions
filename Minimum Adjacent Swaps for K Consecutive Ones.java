@@ -1,47 +1,45 @@
 class Solution {
     public int minMoves(int[] nums, int k) {
-        int onesStore[] =  new int[nums.length];
-        for(int i=0; i<nums.length; i++){
-            onesStore[i] = i;
+        List<Integer> onesStore  = new ArrayList<Integer>(nums.length);
+        
+        for(int i=0; i<nums.length ;i++){
+            if(nums[i]==1){
+            onesStore.add(i);                    
+            }
         }
         
-        for(int i=0; i<onesStore.length; i++){
-            onesStore[i]-=i;
-        }
         
-        int median = (k-1)/2;
-        int leftSum = 0;
-        int rightSum = 0;
-        int minimumSwaps = Integer.MAX_VALUE;
+        int median=(k)/2;
+        int sum=0;
+        int minimumSwaps=0;
+        int currentMedian = median;
         int leftCount=0;
-        int rightCount=0;
-        
-        if(k%2==1){
-            leftCount=rightCount=k/2;
-        }
-        else {
-            leftCount= (k/2 - 1);
-            rightCount = (k/2);
-        }
-        
-        for(int i=0; i<median; i++){
-            leftSum+=onesStore[median] - onesStore[i];
+        int  rightCount=0; 
+    
+        //calculate first time
+        for(int i=0; i<k; i++){
+            if(i<=median){
+            leftCount+=Math.abs(onesStore.get(currentMedian) - onesStore.get(i)) - Math.abs(currentMedian-i);
+            }
+            else{
+rightCount+=Math.abs(onesStore.get(currentMedian) - onesStore.get(i)) - Math.abs(currentMedian-i);   
+            }
         }
         
-        for(int i=median+1; i<k; i++){
-            rightSum+=onesStore[i] - onesStore[median];
-        }
-        minimumSwaps=leftSum+rightSum;
+        minimumSwaps = rightCount + leftCount;
+        int rightValue = k%2 == 1? median : median -1;
         
-        for(int i=k; i<nums.length; i++){
-            leftSum-=onesStore[median] - onesStore[i-k];
-            leftSum+=leftCount*(onesStore[median+1] - onesStore[median]);
-            rightSum+=onesStore[i] - onesStore[median+1];
-            rightSum-=rightCount*(onesStore[median+1] - onesStore[median]);
-            minimumSwaps = Math.min(minimumSwaps,leftSum+ rightSum);
-            median++;
+        //use sliding window and move current mid
+        for(int i=k; i<onesStore.size() ; i++){
+         int nextDifference =  Math.abs(onesStore.get(currentMedian)-onesStore.get(currentMedian+1));
+         leftCount -=  Math.abs(onesStore.get(currentMedian) - onesStore.get(i-k));
+         leftCount += nextDifference * (median);
+         rightCount -= nextDifference* rightValue;
+         rightCount +=  Math.abs(onesStore.get(i)-onesStore.get(currentMedian+1));
+         currentMedian++;
+         minimumSwaps = Math.min(minimumSwaps, leftCount+rightCount);
         }
         
-       return minimumSwaps;
+        return minimumSwaps;
     }
 }
