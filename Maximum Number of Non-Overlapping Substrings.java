@@ -1,3 +1,13 @@
+/*
+Approach:
+1. Use a HashMap to keep a track of chracter and {starting and ending index}
+2. We will try to find end point of the substring
+3. We will pass the starting index of substring and find the last index of substring
+4. We fix the last occurence of this character as the end index
+5. If it is valid i.e there is no occurence of this character before starting index, then it checks if there is a character
+after starting index
+6. Take the maximum of both
+*/
 
 class Solution {
     public List<String> maxNumOfSubstrings(String s) {
