@@ -15,7 +15,7 @@ HashMap<Integer, ArrayList<Integer>> map = new HashMap<Integer, ArrayList<Intege
         
     int index = 0;
         while(index < arr.length){
-            if(!map.contains(arr[index])){
+            if(!map.containsKey(arr[index])){
                 return false;
             }
             
