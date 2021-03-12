@@ -9,3 +9,26 @@ class Solution {
         return s;
     }
 }
+
+
+//Stack Based Approach
+class Solution {
+    public String makeGood(String s) {
+        Stack<Character> stack = new Stack<Character>();
+        
+        for(char c : s.toCharArray()){
+            if(!stack.isEmpty() && Math.abs(c - stack.peek())==32){
+                stack.pop();
+            }else{
+              stack.push(c);   
+            }
+        }
+        
+        
+        StringBuilder goodString = new StringBuilder("");
+        while(!stack.isEmpty()){
+            goodString.append(stack.pop());
+        }
+        return goodString.reverse().toString();
+    }
+}
