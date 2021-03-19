@@ -14,7 +14,7 @@ class Solution {
             }
             if(minimum == maximum){
                 return -1;
-            
+            }
             minimum = maximum;
             total++;
         }
