@@ -1,17 +1,16 @@
 class Solution {
-       public List<int[]> pacificAtlantic(int[][] matrix) {
-      List<int[]> result = new ArrayList<>();
+    public List<List<Integer>> pacificAtlantic(int[][] matrix) {
+      List<List<Integer>> result = new ArrayList<>();
       if(matrix.length == 0){
           return result;
-      } 
+      }
       boolean[][] pacific = new boolean[matrix.length][matrix[0].length];
       boolean[][] atlantic = new boolean[matrix.length][matrix[0].length];
-           
-      int[][] directions = {{-1,1},{1,0},{0,-1},{-1,0}};
-    
+      int[][] directions = {{0,1}, {1,0}, {0,-1}, {-1,0}};
+        
       for(int i=0; i<matrix.length; i++){
         dfs(matrix, directions, pacific, i,  0);
-        dfs(matrix, directions, atlantic, i, matrix[0].length-1);
+        dfs(matrix, directions, atlantic, i, matrix[0].length- 1);
       }   
       
       for(int i=0; i<matrix[0].length; i++){
@@ -22,7 +21,10 @@ class Solution {
       for(int i=0; i<matrix.length; i++){
         for(int j=0; j<matrix[0].length; j++){
           if(pacific[i][j] && atlantic[i][j]) {
-              result.add(new int[]{i,j});
+              List<Integer> pair = new ArrayList<Integer>();
+              pair.add(i);
+              pair.add(j);
+              result.add(pair);
           }
         }
       }
@@ -37,7 +39,7 @@ class Solution {
 if(X<0 || Y<0 || X>=matrix.length || Y>=matrix[0].length || visited[X][Y] || matrix[i][j]>matrix[X][Y]){
           continue;
         }
-        dfs(matrix, directions, visited, x, y);
+        dfs(matrix, directions, visited, X, Y);
       }
     }
 }
