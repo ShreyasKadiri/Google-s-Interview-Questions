@@ -25,7 +25,7 @@ class Solution {
                     sell.poll();
                 }
             }
-        
+        }
         
         for (int[] order : sell){
             result = (result + order[1]) % mod;
