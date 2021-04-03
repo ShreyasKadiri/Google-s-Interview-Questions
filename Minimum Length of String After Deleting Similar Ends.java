@@ -2,16 +2,27 @@ class Solution {
     public int minimumLength(String s) {
         int low  = 0;
         int high = s.length() - 1;
-        if(s.length() == 1){
-            return 1;
+        int length = s.length();
+        
+        while(low < high){
+            if(s.charAt(low) == s.charAt(high)){
+                char currentCharacter = s.charAt(low);
+                
+                //Find the same characters to form similar end on left thats needs to be deleted
+                while(low<high && currentCharacter == s.charAt(low)){
+                    low++;
+                    length--;
+                }
+                
+                //Find the same characters to form similar end on right that needs to be deleted
+                while(high>=low && currentCharacter == s.charAt(high)){
+                    high--;
+                    length--;
+                }
+            }else {
+                break;
+            }
         }
-        char currentCharacter = ' ';
-         while(low<high && s.charAt(low) == s.charAt(high))
-             currentCharacter = s.charAt(low);
-             while(low < s.length() && s.charAt(low) == currentCharacter)
-                 low+=1;
-              while(-1<high && s.charAt(high) == currentCharacter)
-                  high-=1;
-         return Math.max(0, high - low + 1);
+     return length;   
     }
 }
