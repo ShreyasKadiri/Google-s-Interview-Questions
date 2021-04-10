@@ -31,3 +31,4 @@ class Solution {
         dp[row][col] = Math.max(left, Math.max(right, Math.max(up, down))) + 1;
         return dp[row][col];
     }
+}
