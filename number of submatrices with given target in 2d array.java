@@ -11,7 +11,6 @@ class Solution {
         for (int i=0; i<columns; i++) {
             for (int j=0; j<rows; j++) {
                 prefixSum[j+1][i] = prefixSum[j][i] + matrix[j][i];
-//                preSum[i + 1][j] = preSum[i][j] + matrix[i][j];
             }
         }
         
