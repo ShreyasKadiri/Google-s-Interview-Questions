@@ -22,7 +22,7 @@ class Solution {
             for (int j=i; j<rows; j++) {
                 map.clear();
                 int sum = 0;
-                for (int k=0; k<cols; col++) {
+                for (int k=0; k<columns; k++) {
                     sum += prefixSum[j+1][k] - prefixSum[i][k];
                     
                     if (sum == target) {
