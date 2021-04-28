@@ -47,7 +47,7 @@ class Solution {
         }
         
         visited = false;
-        for(int i=0; i<grid[0].length; i++){
+        for(int i=0; i<grid.length; i++){
             if(visited || grid[i][0]==1){            
                 visited = true;
                 dp[i][0] = 0;
@@ -61,7 +61,7 @@ class Solution {
                 if(grid[i][j]==1){      
                     dp[i][j] = 0;
                 }else{
-                    dp[i][j] = d[i-1][j] + dp[i][j-1];
+                    dp[i][j] = dp[i-1][j] + dp[i][j-1];
                 }
             }
         }
