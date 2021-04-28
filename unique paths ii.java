@@ -1,3 +1,33 @@
+//Recursive Solution
+class Solution {
+    public int uniquePathsWithObstacles(int[][] grid) {
+        if(grid == null || grid.length == 0){
+            return 0;
+        }
+        int result[] = new int[grid.length][grid[0].length];
+        return solve(result, grid, 0, 0);
+    }
+    
+    public int findPath(int result[][], int [][] grid, int i, int j){
+        if(i>=grid.length || j>=grid[r].length){
+            return 0;
+        }
+        if(grid[i][j] == 1){
+            return 0;
+        }
+        if(i==grid.length-1 && j==grid[i].length-1){
+            return 1;
+        }
+        if(result[i][j]!=0){
+            return res[r][c];
+        }
+        else{
+            result[i][j]= solve(result, grid, i, j+1) + solve(result, grid, i+1, j);
+        }
+        return result[i][j];
+    }
+}
+
 class Solution {
     public int uniquePathsWithObstacles(int[][] obstacleGrid) {
         if(obstacleGrid.length==0){
