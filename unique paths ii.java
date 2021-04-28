@@ -1,15 +1,15 @@
-//Recursive Solution
+//Recusrive Solution
 class Solution {
     public int uniquePathsWithObstacles(int[][] grid) {
         if(grid == null || grid.length == 0){
             return 0;
         }
-        int result[] = new int[grid.length][grid[0].length];
+        int result[][] = new int[grid.length][grid[0].length];
         return solve(result, grid, 0, 0);
     }
     
-    public int findPath(int result[][], int [][] grid, int i, int j){
-        if(i>=grid.length || j>=grid[r].length){
+    public int solve(int result[][], int [][] grid, int i, int j){
+        if(i>=grid.length || j>=grid[i].length){
             return 0;
         }
         if(grid[i][j] == 1){
@@ -19,7 +19,7 @@ class Solution {
             return 1;
         }
         if(result[i][j]!=0){
-            return res[r][c];
+            return result[i][j];
         }
         else{
             result[i][j]= solve(result, grid, i, j+1) + solve(result, grid, i+1, j);
@@ -28,6 +28,7 @@ class Solution {
     }
 }
 
+//Dp
 class Solution {
     public int uniquePathsWithObstacles(int[][] obstacleGrid) {
         if(obstacleGrid.length==0){
