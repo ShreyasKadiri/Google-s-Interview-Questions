@@ -14,12 +14,12 @@ class Solution {
         long value = 0;
         for (int i=position; i<s.length(); i++) {
             value = value*10 + (s.charAt(i)-'0'); 
-            if (result.size()==0 || result.get(result.size()-1) - num == 1) {
-                result.add(num); 
+            if (result.size()==0 || result.get(result.size()-1) - value == 1) {
+                result.add(value); 
                 if (backtrack(i+1, s, result)) {
                     return true;
                 }
-                result.remove(list.size()-1); 
+                result.remove(result.size()-1); 
             }
         }
         return false;
